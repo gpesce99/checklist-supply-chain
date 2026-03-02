@@ -94,20 +94,6 @@ body {
   backdrop-filter: blur(10px);
 }
 
-.hero-logo .z-mark {
-  width: 32px;
-  height: 32px;
-  background: white;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--zeta-dark);
-}
-
 .hero-logo span {
   font-size: 14px;
   font-weight: 500;
@@ -794,6 +780,9 @@ body {
   text-decoration: none;
   transition: all 0.3s;
   box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
 }
 
 .cta-email:hover {
@@ -851,20 +840,6 @@ body {
   flex-shrink: 0;
 }
 
-.progress-bar-logo .z-mark-sm {
-  width: 28px;
-  height: 28px;
-  background: var(--zeta-dark);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 15px;
-  color: white;
-}
-
 .progress-track {
   flex: 1;
   height: 6px;
@@ -890,6 +865,175 @@ body {
   text-align: right;
 }
 
+/* === MODAL === */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26,31,46,0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-box {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  animation: fadeInUp 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-light);
+  padding: 4px;
+}
+
+.modal-close:hover { color: var(--zeta-dark); }
+
+.modal-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--zeta-dark);
+}
+
+.modal-box .modal-sub {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.modal-score-recap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--zeta-light-blue);
+  border-radius: 10px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.modal-score-recap strong {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--zeta-blue);
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--zeta-dark);
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border 0.2s;
+  background: white;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--zeta-blue);
+  box-shadow: 0 0 0 3px rgba(74,144,217,0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--zeta-dark), var(--zeta-blue));
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  margin-top: 8px;
+}
+
+.submit-btn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.form-success .success-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--zeta-green-soft);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  color: var(--zeta-green);
+}
+
+.form-success h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--zeta-dark);
+}
+
+.form-success p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
 /* === ANIMATIONS === */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -913,6 +1057,7 @@ body {
   .cta-card { padding: 36px 24px; }
   .step-info h2 { font-size: 16px; }
   .score-breakdown { grid-template-columns: repeat(3, 1fr); }
+  .modal-box { padding: 28px 20px; }
 }
 </style>
 </head>
@@ -936,14 +1081,14 @@ body {
 <section class="hero">
   <div class="hero-content">
     <div class="hero-logo">
-      <img src="https://zetaconsulting.info/wp-content/uploads/2023/12/mrc-zeta-w.svg#44" alt="Zeta Consulting" style="height:32px;">
+      <img src="https://zetaconsulting.info/wp-content/uploads/2023/12/mrc-zeta-w.svg" alt="Zeta Consulting" style="height:32px;">
       <span>Zeta Consulting</span>
     </div>
     <br>
     <div class="hero-badge">Checklist Operativa</div>
     <h1>5 passi per essere pronti alla richiesta del <em>tuo cliente</em></h1>
     <p class="hero-sub">Come prepararsi alle richieste di dati sulle emissioni della tua supply chain e trasformare un obbligo in opportunità</p>
-    <div class="hero-feature"> 
+    <div class="hero-feature">
       <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
       Include il Readiness Score: scopri a che punto sei
     </div>
@@ -958,7 +1103,7 @@ body {
       <p>Le grandi aziende sono oggi obbligate a redigere il report di sostenibilità, sia per conformità normativa (CSRD) sia per esigenze di posizionamento sul mercato. Per completare il proprio <strong>Scope 3</strong>, queste aziende devono raccogliere i dati sulle emissioni di tutta la catena di fornitura.</p>
       <p>Questo significa che, a cascata, anche la tua azienda riceverà, o ha già ricevuto, richieste di dati che oggi probabilmente non è in grado di fornire.</p>
       <p>Prepararsi richiede tempo, struttura e competenze. Ma il percorso che porta a rispondere a queste richieste genera anche un valore enorme: consapevolezza energetica, risparmio sui costi e vantaggio competitivo.</p>
-      
+
       <div class="key-concept">
         <div class="label">💡 Il concetto chiave</div>
         <p><strong>Non è la legge che obbliga direttamente la tua azienda, è il mercato.</strong> Se il tuo cliente ha bisogno dei tuoi dati e tu non glieli sai dare, qualcun altro glieli darà. Da fornitore a partner: questa è la trasformazione in atto.</p>
@@ -981,7 +1126,7 @@ body {
 <!-- Steps -->
 <section class="steps-section">
   <div class="container" id="stepsContainer">
-    <!-- Steps are generated by JS -->
+    <!-- Steps generated by JS -->
   </div>
 </section>
 
@@ -991,7 +1136,7 @@ body {
     <div class="readiness-card">
       <h2>Il tuo Readiness Score</h2>
       <p class="subtitle">Riporta i punteggi di ogni passo per scoprire il tuo livello di preparazione</p>
-      
+
       <div class="score-ring-container">
         <div class="score-ring">
           <svg viewBox="0 0 180 180">
@@ -1045,12 +1190,11 @@ body {
           Da dove conviene partire
         </div>
       </div>
-      <a href="mailto:giorgio.pesce@zetaconsulting.info?subject=Richiesta%20confronto%20-%20Decarbonizzazione" class="cta-email">
+      <button onclick="openModal()" class="cta-email">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Contattaci per un confronto
-      </a>
-      <br>
-      <br>
+      </button>
+      <br><br>
       <p class="cta-subtitle">giorgio.pesce@zetaconsulting.info</p>
     </div>
   </div>
@@ -1062,7 +1206,63 @@ body {
   <p style="margin-top:4px;"><a href="https://www.zetaconsulting.info" target="_blank">www.zetaconsulting.info</a> &nbsp;·&nbsp; © 2025 Zeta Consulting S.R.L. — Tutti i diritti riservati</p>
 </footer>
 
+<!-- ✅ MODAL: deve stare PRIMA dello script -->
+<div class="modal-overlay" id="contactModal" onclick="closeModalOnOverlay(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div id="formContent">
+      <h3>Richiedi un confronto</h3>
+      <p class="modal-sub">Ti risponderemo entro 24 ore per analizzare insieme i tuoi risultati e definire i prossimi passi.</p>
+
+      <div class="modal-score-recap">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+        <span>Il tuo Readiness Score: <strong id="modalScore">0</strong> / 100</span>
+      </div>
+
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="inputName">Nome e cognome *</label>
+          <input type="text" id="inputName" name="name" placeholder="Mario Rossi" required>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail">Email aziendale *</label>
+          <input type="email" id="inputEmail" name="email" placeholder="mario.rossi@azienda.it" required>
+        </div>
+        <div class="form-group">
+          <label for="inputCompany">Azienda</label>
+          <input type="text" id="inputCompany" name="company" placeholder="Nome azienda">
+        </div>
+        <div class="form-group">
+          <label for="inputNote">Note aggiuntive (opzionale)</label>
+          <textarea id="inputNote" name="note" placeholder="Raccontaci brevemente la tua situazione..."></textarea>
+        </div>
+
+        <input type="hidden" name="_subject" id="emailSubject" value="Nuova richiesta confronto - Checklist Decarbonizzazione">
+        <input type="hidden" name="checklist_risultati" id="checklistData">
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          Invia richiesta
+        </button>
+      </form>
+    </div>
+
+    <div class="form-success" id="formSuccess">
+      <div class="success-icon">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h4>Richiesta inviata!</h4>
+      <p>Ti contatteremo entro 48 ore all'indirizzo email indicato.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ SCRIPT: sempre dopo il modal -->
 <script>
+const FORMSPREE_ID = 'mnjbkjnj';
+
 const STEPS_DATA = [
   {
     num: 1,
@@ -1117,7 +1317,7 @@ const STEPS_DATA = [
       { text: "Identifica gli interventi di efficientamento a maggior impatto sulla base dei dati raccolti nei passi precedenti", points: 4 },
       { text: "Valuta le opzioni di approvvigionamento: PPA, Garanzie d'Origine, autoproduzione da fonti rinnovabili", points: 3 },
       { text: "Costruisci un piano di riduzione emissioni con obiettivi a breve (1 anno), medio (3 anni) e lungo termine (5+ anni)", points: 4 },
-      { text: "Verifica gli incentivi disponibili (Transizione 5.0, certificati bianchi, conto termico) per finanziare gli interventi", points: 3 }
+      { text: "Verifica gli incentivi disponibili (certificati bianchi, conto termico) per finanziare gli interventi", points: 3 }
     ]
   },
   {
@@ -1142,7 +1342,6 @@ let totalScore = 0;
 function renderSteps() {
   const container = document.getElementById('stepsContainer');
   let html = '';
-  
   STEPS_DATA.forEach((step, si) => {
     html += `
     <div class="step-block open" data-step="${si}">
@@ -1180,7 +1379,6 @@ function renderSteps() {
       </div>
     </div>`;
   });
-  
   container.innerHTML = html;
   renderBreakdown();
 }
@@ -1197,97 +1395,63 @@ function renderBreakdown() {
 }
 
 function toggleStep(si) {
-  const block = document.querySelector(`[data-step="${si}"]`);
-  block.classList.toggle('open');
+  document.querySelector(`[data-step="${si}"]`).classList.toggle('open');
 }
 
 function onCheck(si, ii, pts, checked) {
   const item = document.getElementById(`item-${si}-${ii}`);
-  if (checked) {
-    stepScores[si] += pts;
-    item.classList.add('checked');
-  } else {
-    stepScores[si] -= pts;
-    item.classList.remove('checked');
-  }
+  if (checked) { stepScores[si] += pts; item.classList.add('checked'); }
+  else { stepScores[si] -= pts; item.classList.remove('checked'); }
   updateScores();
 }
 
 function updateScores() {
   totalScore = stepScores.reduce((a, b) => a + b, 0);
-  
-  // Update step badges
+
   stepScores.forEach((score, i) => {
     document.getElementById(`stepScore${i}`).textContent = score;
-    const badge = document.getElementById(`stepBadge${i}`);
-    badge.classList.toggle('has-points', score > 0);
+    document.getElementById(`stepBadge${i}`).classList.toggle('has-points', score > 0);
   });
-  
-  // Update total
+
   document.getElementById('totalScore').textContent = totalScore;
-  
-  // Update ring
+
   const ring = document.getElementById('scoreRing');
   const circumference = 2 * Math.PI * 80;
-  const offset = circumference - (totalScore / 100) * circumference;
-  ring.style.strokeDashoffset = offset;
-  
-  // Ring color
-  if (totalScore <= 30) ring.style.stroke = totalScore === 0 ? 'var(--bg-subtle)' : 'var(--zeta-red)';
+  ring.style.strokeDashoffset = circumference - (totalScore / 100) * circumference;
+
+  if (totalScore === 0) ring.style.stroke = 'var(--bg-subtle)';
+  else if (totalScore <= 30) ring.style.stroke = 'var(--zeta-red)';
   else if (totalScore <= 60) ring.style.stroke = 'var(--zeta-orange)';
   else if (totalScore <= 80) ring.style.stroke = 'var(--zeta-gold)';
   else ring.style.stroke = 'var(--zeta-green)';
-  
-  // Score number color
+
   const scoreNum = document.getElementById('totalScore');
   if (totalScore === 0) scoreNum.style.color = 'var(--zeta-dark)';
   else if (totalScore <= 30) scoreNum.style.color = 'var(--zeta-red)';
   else if (totalScore <= 60) scoreNum.style.color = 'var(--zeta-orange)';
   else if (totalScore <= 80) scoreNum.style.color = 'var(--zeta-gold)';
   else scoreNum.style.color = 'var(--zeta-green)';
-  
-  // Update status badge
+
   const status = document.getElementById('scoreStatus');
   status.className = 'score-status';
-  if (totalScore === 0) {
-    status.classList.add('level-0');
-    status.textContent = 'Inizia a compilare la checklist';
-  } else if (totalScore <= 30) {
-    status.classList.add('level-1');
-    status.textContent = '🔴 Fase iniziale';
-  } else if (totalScore <= 60) {
-    status.classList.add('level-2');
-    status.textContent = '🟠 In cammino';
-  } else if (totalScore <= 80) {
-    status.classList.add('level-3');
-    status.textContent = '🟡 Buon livello';
-  } else {
-    status.classList.add('level-4');
-    status.textContent = '🟢 Pronto';
-  }
-  
-  // Update breakdown
+  if (totalScore === 0) { status.classList.add('level-0'); status.textContent = 'Inizia a compilare la checklist'; }
+  else if (totalScore <= 30) { status.classList.add('level-1'); status.textContent = '🔴 Fase iniziale'; }
+  else if (totalScore <= 60) { status.classList.add('level-2'); status.textContent = '🟠 In cammino'; }
+  else if (totalScore <= 80) { status.classList.add('level-3'); status.textContent = '🟡 Buon livello'; }
+  else { status.classList.add('level-4'); status.textContent = '🟢 Pronto'; }
+
   stepScores.forEach((score, i) => {
     document.getElementById(`bdScore${i}`).textContent = score;
-    const bdItem = document.getElementById(`bd-${i}`);
-    bdItem.classList.toggle('active', score > 0);
+    document.getElementById(`bd-${i}`).classList.toggle('active', score > 0);
   });
-  
-  // Update message
+
   const msg = document.getElementById('scoreMessage');
-  if (totalScore === 0) {
-    msg.textContent = 'Spunta le azioni che hai già completato per calcolare il tuo Readiness Score.';
-  } else if (totalScore <= 30) {
-    msg.textContent = 'La tua azienda non ha ancora una struttura per gestire i dati energetici e le emissioni. È il momento di partire: il rischio di perdere clienti è concreto.';
-  } else if (totalScore <= 60) {
-    msg.textContent = 'Hai iniziato il percorso ma mancano ancora elementi fondamentali. Concentra gli sforzi sulle aree scoperte prima che arrivino le richieste dai clienti.';
-  } else if (totalScore <= 80) {
-    msg.textContent = 'Hai le basi solide. Ora puoi affinare il sistema, completare le aree mancanti e cominciare a comunicare il tuo impegno ai clienti in modo proattivo.';
-  } else {
-    msg.textContent = 'Sei in una posizione di forza. Puoi rispondere alle richieste con sicurezza e posizionarti come partner strategico nella catena di fornitura.';
-  }
-  
-  // Update progress bar
+  if (totalScore === 0) msg.textContent = 'Spunta le azioni che hai già completato per calcolare il tuo Readiness Score.';
+  else if (totalScore <= 30) msg.textContent = 'La tua azienda non ha ancora una struttura per gestire i dati energetici e le emissioni. È il momento di partire: il rischio di perdere clienti è concreto.';
+  else if (totalScore <= 60) msg.textContent = 'Hai iniziato il percorso ma mancano ancora elementi fondamentali. Concentra gli sforzi sulle aree scoperte prima che arrivino le richieste dai clienti.';
+  else if (totalScore <= 80) msg.textContent = 'Hai le basi solide. Ora puoi affinare il sistema, completare le aree mancanti e cominciare a comunicare il tuo impegno ai clienti in modo proattivo.';
+  else msg.textContent = 'Sei in una posizione di forza. Puoi rispondere alle richieste con sicurezza e posizionarti come partner strategico nella catena di fornitura.';
+
   document.getElementById('progressFill').style.width = totalScore + '%';
   document.getElementById('progressScore').textContent = totalScore + ' / 100';
 }
@@ -1300,9 +1464,69 @@ function resetAll() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Sticky bar shadow
 window.addEventListener('scroll', () => {
   document.getElementById('progressBar').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+/* === MODAL === */
+function openModal() {
+  document.getElementById('modalScore').textContent = totalScore;
+  document.getElementById('checklistData').value = buildChecklistSummary();
+  document.getElementById('emailSubject').value = `Richiesta confronto — Score ${totalScore}/100`;
+  document.getElementById('contactModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('contactModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnOverlay(e) {
+  if (e.target === document.getElementById('contactModal')) closeModal();
+}
+
+function buildChecklistSummary() {
+  let text = `READINESS SCORE: ${totalScore}/100\n`;
+  text += `=====================================\n\n`;
+  STEPS_DATA.forEach((step, si) => {
+    text += `PASSO ${step.num} — ${step.title}: ${stepScores[si]}/20\n`;
+    step.items.forEach((item, ii) => {
+      const cb = document.querySelector(`#item-${si}-${ii} input[type="checkbox"]`);
+      text += `  ${cb && cb.checked ? '✅' : '☐'} ${item.text}\n`;
+    });
+    text += '\n';
+  });
+  return text;
+}
+
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Invio in corso...';
+
+  try {
+    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      document.getElementById('formContent').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+      setTimeout(closeModal, 3000);
+    } else {
+      alert('Errore nell\'invio. Riprova o scrivici a giorgio.pesce@zetaconsulting.info');
+      btn.disabled = false;
+      btn.textContent = 'Invia richiesta';
+    }
+  } catch {
+    alert('Errore di connessione. Riprova tra qualche istante.');
+    btn.disabled = false;
+    btn.textContent = 'Invia richiesta';
+  }
 });
 
 // Init
